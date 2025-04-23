@@ -1,8 +1,11 @@
 require 'colorize'
-
-all_colors =["red".colorize(:red), "green".colorize(:green), "blue".colorize(:blue), "yellow".colorize(:yellow), 
-"orange".colorize(:light_red), "purple".colorize(:magenta)]
-
+require_relative 'lib/gameboard'
+require_relative 'lib/players'
 
 
-puts all_colors
+
+game = Gameboard.new
+
+game.code_creation
+
+game.array_compare
