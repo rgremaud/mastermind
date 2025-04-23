@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    colorize (1.1.0)
+    rack (3.1.13)
+    robocop (0.1.1)
+      rack
+
+PLATFORMS
+  arm64-darwin-24
+  ruby
+
+DEPENDENCIES
+  colorize (~> 1.1)
+  robocop (~> 0.1.1)
+
+BUNDLED WITH
+   2.5.16
