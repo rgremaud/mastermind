@@ -42,6 +42,12 @@ class Gameboard
     # compare with code_array.include(input_array[0])
     # This method may duplicate, so items will tabulate on both options
     # Solution is to subtract number of exact matches from color matches
+    # 
+    # input_array.each do |color|
+    # include_count += 1 if code_array.include?(color)
+    # end
+    # 
+    # code_array - input_array
     
   end
 
