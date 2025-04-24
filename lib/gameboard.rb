@@ -46,6 +46,11 @@ class Gameboard
       puts "Total number of red pegs (exact matches) is: #{red_pegs}"
   end
 
+  def relative_matches
+    white_pegs = 4 - (@code_array - @input_array).length
+    puts "Total number of white pegs (relative matches) is: #{white_pegs}"
+  end
+
   def array_compare
     i = 0 
     loop do
@@ -62,9 +67,6 @@ class Gameboard
     # compare with code_array.include(input_array[0])
     # This method may duplicate, so items will tabulate on both options
     # Solution is to subtract number of exact matches from color matches
-    # 
-    # input_array.each do |color|
-    # include_count += 1 if code_array.include?(color)
-    # end
+    # subtracting array seems to work for number of matches
   end
 end
