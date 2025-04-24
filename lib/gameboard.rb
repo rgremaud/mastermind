@@ -47,10 +47,22 @@ class Gameboard
   end
 
   def relative_matches
-    white_pegs = 4 - (@code_array - @input_array).length
+  # use a loop for 
+  # use code_array.count(input_array[i]) - input_array.count(input_array[0]) 
+  i = 0
+  white_pegs = 0
+  loop do
+    if (@code_array.count(@input_array[i]) - @input_array.count(@input_array[i])) == 0
+      white_pegs += 1
+    elsif (@code_array.count(@input_array[i]) - @input_array.count(@input_array[i])) > 0
+      white_pegs += @code_array.count(@input_array[i]) - @input_array.count(@input_array[i])
+    end
+    i += 1
+    break if i == @code_array.length
+  end
     puts "Total number of white pegs (relative matches) is: #{white_pegs}"
   end
-
+  
   def array_compare
     i = 0 
     loop do
