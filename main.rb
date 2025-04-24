@@ -8,8 +8,10 @@ game = Gameboard.new
 
 game.code_creation
 
-#game.input_guess
+game.input_guess
+
+game.exact_matches
 
 #game.win_check
 
-game.array_compare
+#game.array_compare

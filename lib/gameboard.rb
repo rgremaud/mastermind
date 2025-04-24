@@ -33,6 +33,19 @@ class Gameboard
     end
   end
 
+  def exact_matches
+    i = 0
+    red_pegs = 0
+    loop do
+      if @code_array[i] == @input_array[i]
+        red_pegs += 1
+      end
+      i += 1
+      break if i == @code_array.length
+      end
+      puts "Total number of red pegs (exact matches) is: #{red_pegs}"
+  end
+
   def array_compare
     i = 0 
     loop do
@@ -53,8 +66,5 @@ class Gameboard
     # input_array.each do |color|
     # include_count += 1 if code_array.include?(color)
     # end
-    # 
-    
   end
-
 end
