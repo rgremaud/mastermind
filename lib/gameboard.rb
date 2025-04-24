@@ -5,9 +5,9 @@ class Gameboard
     @all_colors = ["red", "green", "blue", "yellow", "orange", "purple"]
     @color_match_index_match = 0
     @color_match = 0
+    @input_array = []
+    @win_trigger = 0
   end
-  # create a function that selects four random colors
-  # 12 rounds, four color pegs guesses
   
   def code_creation 
     i = 0
@@ -19,20 +19,27 @@ class Gameboard
     puts @code_array
   end
 
-  def color_guess
+  def input_guess
     print 'Please enter four colors: '
     input_string = gets.to_s
-    input_array = input_string.split(" ")
-    puts input_array
-   
+    @input_array = input_string.split(" ")
+    puts @input_array
+  end
+
+  def win_check
+    if @code_array == @input_array 
+      @win_trigger = 1
+      return puts "Wow! You win!"
+    end
   end
 
   def array_compare
     i = 0 
     loop do
-      color_guess
       i += 1
-      break if i == 12
+      input_guess
+      win_check
+      break if i == 12 || @win_trigger == 1
     end
     # run a loop to request color_guess 12 times and compare with code_array
     # if all four match, game is over and you win
@@ -47,7 +54,6 @@ class Gameboard
     # include_count += 1 if code_array.include?(color)
     # end
     # 
-    # code_array - input_array
     
   end
 
