@@ -1,4 +1,4 @@
-class Gameboard
+class Game
   # build initial gameboard
   def initialize
     @code_array = Array.new
@@ -7,6 +7,7 @@ class Gameboard
     @color_match = 0
     @input_array = []
     @win_trigger = 0
+    @player = nil
   end
   
   def code_creation 
@@ -70,7 +71,18 @@ class Gameboard
       win_check
       exact_matches
       relative_matches
+      # build a feature that stores the current input_guess under a larger array
+      # goal is to take that larger array and use it as your display board
+      # feature should also store red and white pegs
       break if i == 12 || @win_trigger == 1
     end
   end
+
+  def create_players
+    print "Please enter a name: "
+    name = gets.chomp.to_s
+    @player = Player.new(name)
+    puts @player.name
+  end
+  
 end
