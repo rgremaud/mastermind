@@ -47,8 +47,6 @@ class Gameboard
   end
 
   def relative_matches
-  # use a loop for 
-  # use code_array.count(input_array[i]) - input_array.count(input_array[0]) 
   i = 0
   white_pegs = 0
   loop do

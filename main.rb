@@ -10,6 +10,8 @@ game.code_creation
 
 game.input_guess
 
+game.exact_matches
+
 game.relative_matches
 
 #game.win_check
