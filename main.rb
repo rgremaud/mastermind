@@ -3,24 +3,19 @@ require_relative 'lib/gameboard'
 require_relative 'lib/players'
 require_relative 'lib/display'
 
-#String.color_samples
 
-#game = Gameboard.new
+# Game Test
+game = Gameboard.new
 
-#game.code_creation
+game.code_creation
 
-#game.input_guess
+game.array_compare
 
-#game.exact_matches
 
-#game.relative_matches
+# Game board testing
 
-board = Display.new
+#board = Display.new
 
-board.display_board
+#board.display_board
 
-board.all_colors_hash
-
-#game.win_check
-
-#game.array_compare
+#board.all_colors_hash

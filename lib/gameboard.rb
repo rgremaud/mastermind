@@ -63,10 +63,13 @@ class Gameboard
   
   def array_compare
     i = 0 
+    #red_pegs = 0
     loop do
       i += 1
       input_guess
       win_check
+      exact_matches
+      relative_matches
       break if i == 12 || @win_trigger == 1
     end
   end
