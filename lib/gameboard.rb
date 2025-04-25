@@ -69,14 +69,5 @@ class Gameboard
       win_check
       break if i == 12 || @win_trigger == 1
     end
-    # run a loop to request color_guess 12 times and compare with code_array
-    # if all four match, game is over and you win
-    # elsif color matches and index number matches, add to color_match_index_match
-    # compare with code_array[1] == input_array[1] etc
-    # elsif color matches and index number doesn't match, add to color_match 
-    # compare with code_array.include(input_array[0])
-    # This method may duplicate, so items will tabulate on both options
-    # Solution is to subtract number of exact matches from color matches
-    # subtracting array seems to work for number of matches
   end
 end
