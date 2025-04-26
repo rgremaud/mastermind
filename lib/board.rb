@@ -10,7 +10,6 @@ class Board
   end
 
   def array_to_display
-    input_array = @display_array
     @map_array = @display_array.map do |color|
       if color == "red"
         color = "R".red
@@ -27,9 +26,21 @@ class Board
   end
 
   def display_board
-    puts "+------------------+"
-    puts "|#{@map_array[0]} #{@map_array[1]} #{@map_array[2]} #{@map_array[3]} |1 1 1 1 |"
-    puts @maps_array
+    # setting map array manually to adjust display
+    @map_array = [" R ".red, " B ".blue, " O ".light_red, " P ".light_magenta]
+    peg_array = [" ".on_white," "," "," "]
+    puts "------------------------------"
+    i = 1
+    loop do
+      if i <= 9
+        puts "|  #{i} |#{@map_array[0]} #{@map_array[1]} #{@map_array[2]} #{@map_array[3]} |#{peg_array[0]} #{peg_array[0]} #{peg_array[0]} #{peg_array[0]}|"
+      elsif i > 9
+        puts "| #{i} |#{@map_array[0]} #{@map_array[1]} #{@map_array[2]} #{@map_array[3]} |#{peg_array[0]} #{peg_array[0]} #{peg_array[0]} #{peg_array[0]}|"
+      end
+        i += 1
+    break if i == 13
+    end
+    puts "------------------------------"
   end
 
 end
