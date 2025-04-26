@@ -1,25 +1,5 @@
-
-class Board
-  all_colors = ["red","green","blue","yellow", "orange", "purple"]
-
-  def initialize
-    @peg_array = []
-    @map_array = []
-    @input_storage = nil
-    @peg_array = nil
-  end
-
-  def add_pegs
-    white_pegs = 3
-    i = 0
-    loop do 
-      @peg_array << " ".on_white
-      i += 1
-      break if i == white_pegs
-    end
-    puts @peg_array
-  end
-
+module Board_test
+  
   def display_board
     puts "------------------------------"
     i = 1
@@ -34,5 +14,6 @@ class Board
     end
     puts "------------------------------"
   end
+
 
 end

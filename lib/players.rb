@@ -4,7 +4,11 @@ class Player
   end
 
   def name
-    "my name is #{@name}!"
+    "Good luck breaking the code, #{@name}!"
+  end
+
+  def testing
+    puts "current input array is #{@input_array}"
   end
 
 end
