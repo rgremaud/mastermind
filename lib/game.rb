@@ -1,5 +1,5 @@
 class Game
-  # build initial gameboard
+  
   def initialize
     @code_array = Array.new
     @all_colors = ["red", "green", "blue", "yellow", "orange", "purple"]
@@ -10,6 +10,9 @@ class Game
     @player = nil
   end
   
+  # think about rewriting this so it flags based on if player is a computer or human
+  # human would enter their code manually
+  # computer would follow the below process
   def code_creation 
     i = 0
     loop do
@@ -71,9 +74,6 @@ class Game
       win_check
       exact_matches
       relative_matches
-      # build a feature that stores the current input_guess under a larger array
-      # goal is to take that larger array and use it as your display board
-      # feature should also store red and white pegs
       break if i == 12 || @win_trigger == 1
     end
   end
@@ -83,6 +83,23 @@ class Game
     name = gets.chomp.to_s
     @player = Player.new(name)
     puts @player.name
+  end
+
+  # moved from board to game - need to rework
+  def array_to_display
+    @map_array = @display_array.map do |color|
+      if color == "red"
+        color = "R".red
+      elsif color == "blue"
+        color = "B".blue
+      elsif color == "orange"
+        color = "O".light_red
+      elsif color == "purple"
+        color = "P".light_magenta
+      else
+        color == color 
+      end
+    end
   end
   
 end

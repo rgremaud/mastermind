@@ -4,38 +4,32 @@ class Board
 
   def initialize
     @array = ["R".red, "B".blue, "G".green, "P".light_magenta]
-    @red_pegs = 2
-    @white_pegs = 2
+    @peg_array = []
     @map_array = []
   end
 
-  def array_to_display
-    @map_array = @display_array.map do |color|
-      if color == "red"
-        color = "R".red
-      elsif color == "blue"
-        color = "B".blue
-      elsif color == "orange"
-        color = "O".light_red
-      elsif color == "purple"
-        color = "P".light_magenta
-      else
-        color == color 
-      end
+  def add_pegs
+    white_pegs = 3
+    i = 0
+    loop do 
+      @peg_array << " ".on_white
+      i += 1
+      break if i == white_pegs
     end
+    puts @peg_array
   end
 
   def display_board
     # setting map array manually to adjust display
     @map_array = [" R ".red, " B ".blue, " O ".light_red, " P ".light_magenta]
-    peg_array = [" ".on_white," "," "," "]
+    @peg_array = [" ".on_white," "," "," "]
     puts "------------------------------"
     i = 1
     loop do
       if i <= 9
-        puts "|  #{i} |#{@map_array[0]} #{@map_array[1]} #{@map_array[2]} #{@map_array[3]} |#{peg_array[0]} #{peg_array[0]} #{peg_array[0]} #{peg_array[0]}|"
+        puts "|  #{i} |#{@map_array[0]} #{@map_array[1]} #{@map_array[2]} #{@map_array[3]} |#{@peg_array[0]} #{@peg_array[0]} #{@peg_array[0]} #{@peg_array[0]}|"
       elsif i > 9
-        puts "| #{i} |#{@map_array[0]} #{@map_array[1]} #{@map_array[2]} #{@map_array[3]} |#{peg_array[0]} #{peg_array[0]} #{peg_array[0]} #{peg_array[0]}|"
+        puts "| #{i} |#{@map_array[0]} #{@map_array[1]} #{@map_array[2]} #{@map_array[3]} |#{@peg_array[0]} #{@peg_array[0]} #{@peg_array[0]} #{@peg_array[0]}|"
       end
         i += 1
     break if i == 13

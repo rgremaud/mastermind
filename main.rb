@@ -5,9 +5,9 @@ require_relative 'lib/players'
 
 
 # Game Test
-#game = Gameboard.new
+# game = Game.new
 
-#game.code_creation
+# game.code_creation
 
 #game.array_compare
 
@@ -15,7 +15,6 @@ require_relative 'lib/players'
 # Game board testing
 
 board = Board.new
-#board.array_to_display
-board.display_board
+board.add_pegs
 
 #board.all_colors_hash
