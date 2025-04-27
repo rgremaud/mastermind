@@ -15,8 +15,8 @@ class Game
     @red_pegs = nil
     @white_pegs = nil
     @board = nil
-    @map_array
-    @peg_array = [" ".white]
+    @map_array = []
+    @peg_array = []
   end
 
   def code_creation # eventually needs a re-write for if computer or human sets code
@@ -114,9 +114,22 @@ class Game
     end
   end
 
+  def peg_to_display
+    @peg_array = []
+    @white_pegs = @white_pegs - @red_pegs # this seems to be breaking red and white pegs
+    @red_pegs.times do
+      @peg_array << " ".on_red
+    end
+    @white_pegs.times do
+      @peg_array << " ".on_white
+    end
+  end
+
   def display_storage
     array_to_display
     @input_storage << @map_array
+    peg_to_display
+    @peg_storage << @peg_array
     self.display_board
   end
 
