@@ -81,6 +81,7 @@ class Game
       win_check
       exact_matches
       relative_matches
+      display_storage
       break if i == 12 || @win_trigger == 1
     end
   end
@@ -93,7 +94,6 @@ class Game
     puts @player.testing
   end
 
-  # moved from board to game - need to rework
   def array_to_display
     @map_array = @input_array.map do |color|
       if color == "red"
@@ -115,10 +115,8 @@ class Game
   end
 
   def display_storage
-    puts "The current input array is #{@input_array}"
     array_to_display
     @input_storage << @map_array
-    puts @input_storage
     self.display_board
   end
 

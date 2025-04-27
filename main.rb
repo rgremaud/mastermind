@@ -8,11 +8,7 @@ require_relative 'lib/module_test'
 # Game Test
 game = Game.new
 
-#game.board_create
-game.input_guess
-game.display_storage
-game.input_guess
-game.display_storage
+game.game_loop
 
 
 # Game board testing

@@ -1,7 +1,7 @@
 module Board_test
   
   def display_board
-    puts "------------------------------"
+    puts "--------------------------"
     i = 1
     loop do
       if i <= 9
@@ -12,7 +12,7 @@ module Board_test
         i += 1
     break if i == @input_storage.length+1 || i == 13
     end
-    puts "------------------------------"
+    puts "--------------------------"
   end
 
 
