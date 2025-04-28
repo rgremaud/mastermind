@@ -4,8 +4,7 @@ class Game
     @win_trigger = nil 
     @human_player = nil 
     @computer_player = nil
-    @board = Board.new # This allows you to call functions on board, but not instance variables - Need to rework structure
-    @code_array = Array.new 
+    @board = Board.new
   end
 
   def code_break_loop
@@ -17,7 +16,7 @@ class Game
       @board.exact_matches
       @board.relative_matches
       @board.display_storage
-      break if i == 12 || @board.win_check == true
+      break if i == 12 || @board.win_check === true
     end
   end
 
@@ -28,10 +27,10 @@ class Game
     puts @human_player.name
   end
 
-def game_loop
-  create_players
-  @board.code_creation
-  code_break_loop
-end
+  def game_loop
+    create_players
+    @board.code_creation
+    code_break_loop
+  end
 
 end

@@ -108,10 +108,10 @@ def relative_matches
   @white_pegs = 0
   loop do
     if (@code_array.count(@input_array[i]) - @input_array.count(@input_array[i])) == 0
-     @white_pegs += 1
-  elsif (@code_array.count(@input_array[i]) - @input_array.count(@input_array[i])) > 0
-    @white_pegs += @code_array.count(@input_array[i]) - @input_array.count(@input_array[i])
-  end
+      @white_pegs += 1
+    elsif (@code_array.count(@input_array[i]) - @input_array.count(@input_array[i])) > 0
+      @white_pegs += @code_array.count(@input_array[i]) - @input_array.count(@input_array[i])
+    end
     i += 1
   break if i == @code_array.length
 end
@@ -120,8 +120,8 @@ end
 
 def win_check
   if @input_array == @code_array
-    true
-    return "Code has been cracked!"
+    puts "Code has been cracked!"
+    return true
   else
     false
   end
