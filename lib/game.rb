@@ -2,7 +2,7 @@ require_relative "module_test"
 
 class Game
 
-  include Board_test
+  include Board_test #move back to board
   
   def initialize
     @code_array = Array.new
@@ -14,12 +14,12 @@ class Game
     @player = nil
     @red_pegs = nil
     @white_pegs = nil
-    @board = nil
+    @board = nil # set this to @board = board.new
     @map_array = []
     @peg_array = []
   end
 
-  def code_creation # eventually needs a re-write for if computer or human sets code
+  def code_creation # keep on game side of things
     i = 0
     loop do
       @code_array << @all_colors.sample
@@ -33,13 +33,12 @@ class Game
     print 'Please enter four colors: '
     input_string = gets.to_s
     @input_array = input_string.split(" ")
-    puts "You guessed #{@input_array}"
   end
 
   def win_check
     if @code_array == @input_array 
       @win_trigger = 1
-      return puts "Wow! You win!"
+      return puts "Congratulations! You have cracked the code!"
     end
   end
 
@@ -67,14 +66,12 @@ class Game
     end
     i += 1
     break if i == @code_array.length
-    #@white_pegs = @red_pegs - @white_pegs work this into the display?
   end
-    puts "Total number of white pegs (relative matches) is: #{@white_pegs}"
+    puts "Total number of white pegs (relative matches) is: #{@white_pegs-@red_pegs}"
   end
   
   def code_break_loop
     i = 0 
-    #red_pegs = 0
     loop do
       i += 1
       input_guess
@@ -91,7 +88,6 @@ class Game
     name = gets.chomp.to_s
     @player = Player.new(name)
     puts @player.name
-    puts @player.testing
   end
 
   def array_to_display
@@ -122,6 +118,9 @@ class Game
     end
     @white_pegs.times do
       @peg_array << " ".on_white
+    end
+    (4 - @white_pegs - @red_pegs).times do
+      @peg_array << " "
     end
   end
 
