@@ -19,18 +19,13 @@ def input
   @input_array = input_string.split(" ")
 end
 
-def code_creation # move to board
+def code_creation
   i = 0
   loop do
     @code_array << @all_colors.sample
     i += 1
     break if i == 4
   end
-  puts "The code array is #{@code_array} - FOR TESTING REMOVE LATER"
-  puts "The code master has set the code!" 
-  puts "Your color options are red, green, blue, yellow, orange and purple."
-  puts "When inputting a guess please enter four colors seperated by a space."
-  puts "Example input: red blue green orange"
 end
 
 def display_board
@@ -50,7 +45,7 @@ end
 
 def peg_to_display
   @peg_array = []
-  @white_pegs = @white_pegs - @red_pegs # this seems to be breaking red and white pegs
+  @white_pegs = @white_pegs - @red_pegs 
   @red_pegs.times do
     @peg_array << "●".red
   end
@@ -99,8 +94,7 @@ def exact_matches
     end
     i += 1
     break if i == @code_array.length
-    end
-    puts "Total number of red pegs (exact matches) is: #{@red_pegs}"
+  end
 end
 
 def relative_matches
@@ -114,8 +108,7 @@ def relative_matches
     end
     i += 1
   break if i == @code_array.length
-end
-  puts "Total number of white pegs (relative matches) is: #{@white_pegs-@red_pegs}"
+  end
 end
 
 def win_check
@@ -125,6 +118,11 @@ def win_check
   else
     false
   end
+end
+
+def you_lose
+  puts "Sorry you lose!"
+  puts "The code array was #{@code_array}"
 end
 
 end

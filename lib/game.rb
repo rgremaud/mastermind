@@ -18,6 +18,8 @@ class Game
       @board.display_storage
       break if i == 12 || @board.win_check === true
     end
+    if @board.win_check != true then @board.you_lose
+    end
   end
 
   def create_players #re-work for computer players
@@ -30,6 +32,12 @@ class Game
   def game_loop
     create_players
     @board.code_creation
+    puts "The code master has set the code!" 
+    puts "Your color options are red, green, blue, yellow, orange and purple."
+    puts "When inputting a guess please enter four colors seperated by a space."
+    puts "Example input: red blue green orange"
+    puts "Red pegs indicate and EXACT match"
+    puts "White pegs indicate a RELATIVE match"
     code_break_loop
   end
 
