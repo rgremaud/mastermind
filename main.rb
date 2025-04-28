@@ -8,7 +8,7 @@ require_relative 'lib/players'
 # Game Test
 game = Game.new
 
-game.input_guess
+game.game_loop
 
 
 
