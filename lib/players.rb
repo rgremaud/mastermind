@@ -4,7 +4,7 @@ class Player
   end
 
   def name
-    "Good luck breaking the code, #{@name}!"
+    "Welcome, #{@name}!"
   end
 
 end

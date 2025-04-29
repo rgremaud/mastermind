@@ -4,7 +4,8 @@ class Game
     @win_trigger = nil 
     @human_player = nil 
     @computer_player = nil
-    @board = Board.new
+    @board = nil
+    @code_breaker = nil
   end
 
   def code_break_loop
@@ -27,18 +28,27 @@ class Game
     name = gets.chomp.to_s
     @human_player = Player.new(name)
     puts @human_player.name
+    print "Would you like to be code breaker or the code master? "
+    print "Please enter breaker or master: "
+    @code_breaker = gets.chomp.to_s
   end
 
   def game_loop
     create_players
-    @board.code_creation
-    puts "The code master has set the code!" 
-    puts "Your color options are red, green, blue, yellow, orange and purple."
-    puts "When inputting a guess please enter four colors seperated by a space."
-    puts "Example input: red blue green orange"
-    puts "Red pegs indicate and EXACT match"
-    puts "White pegs indicate a RELATIVE match"
-    code_break_loop
+    if @code_breaker == "breaker"
+      @board = Board.new
+      @board.code_creation
+      puts "The code master has set the code!" 
+      puts "Your color options are red, green, blue, yellow, orange and purple."
+      puts "When inputting a guess please enter four colors seperated by a space."
+      puts "Example input: red blue green orange"
+      puts "Red pegs indicate and EXACT match"
+      puts "White pegs indicate a RELATIVE match"
+      code_break_loop
+    else
+      @board = Computer_Board.new
+      @board.code_set
+    end
   end
 
 end

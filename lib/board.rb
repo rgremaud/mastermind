@@ -15,7 +15,7 @@ end
 
 def input
   print 'Please enter four colors: '
-  input_string = gets.to_s
+  input_string = gets.downcase.to_s
   @input_array = input_string.split(" ")
 end
 
