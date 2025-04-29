@@ -26,6 +26,7 @@ def code_creation
     i += 1
     break if i == 4
   end
+  puts "Code array is #{@code_array}"
 end
 
 def display_board
@@ -84,6 +85,8 @@ def array_to_display
     end
   end
 end
+
+# rewrite exact and relative matches to take two arrays and calculate the number of red and white pegs
 
 def exact_matches
   i = 0
