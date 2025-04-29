@@ -29,7 +29,7 @@ class Computer_Board < Board
    # run your first code guess as red red blue blue
     @input_array = ["red","red","blue","blue"]
   # calculate numbers of white and red pegs - not working
-    exact_matches
+    exact_matches 
     relative_matches
    #i = 0
    #loop do

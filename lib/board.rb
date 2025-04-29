@@ -86,18 +86,24 @@ def array_to_display
   end
 end
 
-# rewrite exact and relative matches to take two arrays and calculate the number of red and white pegs
+# rewrite exact and relative matches to operate as a single function
 
 def exact_matches
   i = 0
   @red_pegs = 0
+  @white_pegs = 0
   loop do
     if @code_array[i] == @input_array[i]
       @red_pegs += 1
+    # add an elsif version, so it will first check if the two items are equal
+    # then cycle to a check for white pegs use .include?
+    elsif @code_array.include?(@input_array[i]) && @code_array[i] != @input_array[i]
+      @white_pegs += 1
     end
     i += 1
     break if i == @code_array.length
   end
+  puts "Red pegs = #{@red_pegs} White pegs = #{@white_pegs}"
 end
 
 def relative_matches
