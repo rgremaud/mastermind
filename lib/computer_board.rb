@@ -31,8 +31,8 @@ class Computer_Board < Board
     peg_matches
    #i = 0
    #loop do
-    @perms = @perms.select { |perm| (exact_matches_pc(perm,@code_array) + relative_matches_pc(perm,@code_array)) > (@red_pegs + @white_pegs) }
-    puts "Perm length is #{@perms.length}"
+  @perms = @perms.select { |perm| peg_matches_pc(perm) > (@red_pegs + @white_pegs) }
+  puts "Perm length is #{@perms.length}"
     #@input_array = @perms[0]
     #p "New input array is #{@input_array}"
     #exact_matches
@@ -44,32 +44,28 @@ class Computer_Board < Board
    # pick the first element in the perm array and re-run as a loop
   end
 
-  def exact_matches_pc(array1,array2)
-    i = 0
-    @red_pegs_perm = 0
-    loop do
-      if array1[i] == array2[i]
-        @red_pegs_perm += 1
-      end
-      i += 1
-      break if i == array2.length
-    end
-    return @red_pegs_perm
-  end
+  def peg_matches_pc(perm_array)
+    red_pegs = 0
+    white_pegs = 0
   
-  def relative_matches_pc(array1,array2)
-    i = 0
-    @white_pegs_perm = 0
-    loop do
-      if (array2.count(array1[i]) - array1.count(array1[i])) == 0
-        @white_pegs_perm += 1
-      elsif (array2.count(array1[i]) - array1.count(array1[i])) > 0
-        @white_pegs_perm += array2.count(array1[i]) - array1.count(array1[i])
-      end
-      i += 1
-    break if i == array2.length
+    @code_array.each_with_index { |color, index| @red_pegs += 1 if color == perm_array[index] }
+
+    code_counts = @code_array.reduce(Hash.new(0)) do |color, count|
+      color[count] += 1
+      color
     end
-    return @white_pegs_perm
+
+    perm_counts = perm_array.reduce(Hash.new(0)) do |color, count|
+      color[count] += 1
+      color
+    end
+
+    code_counts.sum do |color, count|
+      white_pegs += [count, perm_counts[color]].min
+    end
+
+    white_pegs = white_pegs - red_pegs
+    total_pegs = white_pegs + red_pegs
   end
 
 end
