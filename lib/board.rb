@@ -86,39 +86,33 @@ def array_to_display
   end
 end
 
-# rewrite exact and relative matches to operate as a single function
-
-def exact_matches
+def peg_matches
   i = 0
   @red_pegs = 0
   @white_pegs = 0
   loop do
     if @code_array[i] == @input_array[i]
       @red_pegs += 1
-    # add an elsif version, so it will first check if the two items are equal
-    # then cycle to a check for white pegs use .include?
-    elsif @code_array.include?(@input_array[i]) && @code_array[i] != @input_array[i]
+    # else if 
+    elsif @code_array[i] != @input_array[i] && (@code_array.count(@input_array[i]) - @input_array.count(@input_array[i])) == 0
       @white_pegs += 1
+    elsif @code_array[i] != @input_array[i] && (@code_array.count(@input_array[i]) - @input_array.count(@input_array[i])) > 0
+      @white_pegs += @code_array.count(@input_array[i]) - @input_array.count(@input_array[i])
     end
+    #elsif @code_array.include?(@input_array[i]) && @code_array[i] != @input_array[i] && @code_array.count(@input_array[i]) == 1
+      #@white_pegs += 1
+    #elsif @code_array.include?(@input_array[i]) && @code_array[i] != @input_array[i] && @input_array.count(@input_array[i]) == @code_array.count(@code_array[i])
+      #@white_pegs += @input_array.count(@input_array[i])
+    #elsif @code_array.include?(@input_array[i]) && @code_array[i] != @input_array[i] && @input_array.count(@input_array[i]) > @code_array.count(@code_array[i])
+      #@white_pegs += @code_array.count(@code_array[i])
+    #elsif @code_array.include?(@input_array[i]) && @code_array[i] != @input_array[i] && @code_array.count(@code_array[i]) > @input_array.count(@input_array[i])
+      #@white_pegs += @input_array.count(@input_array[i])
     i += 1
     break if i == @code_array.length
   end
   puts "Red pegs = #{@red_pegs} White pegs = #{@white_pegs}"
 end
 
-def relative_matches
-  i = 0
-  @white_pegs = 0
-  loop do
-    if (@code_array.count(@input_array[i]) - @input_array.count(@input_array[i])) == 0
-      @white_pegs += 1
-    elsif (@code_array.count(@input_array[i]) - @input_array.count(@input_array[i])) > 0
-      @white_pegs += @code_array.count(@input_array[i]) - @input_array.count(@input_array[i])
-    end
-    i += 1
-  break if i == @code_array.length
-  end
-end
 
 def win_check
   if @input_array == @code_array

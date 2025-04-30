@@ -14,8 +14,7 @@ class Game
       i += 1
       @board.input
       @board.win_check
-      @board.exact_matches
-      @board.relative_matches
+      @board.peg_matches
       @board.display_storage
       break if i == 12 || @board.win_check === true
     end
