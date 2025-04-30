@@ -44,9 +44,10 @@ class Game
       puts "Red pegs indicate and EXACT match"
       puts "White pegs indicate a RELATIVE match"
       code_break_loop
-    else
+    elsif @code_breaker == "master"
       @board = Computer_Board.new
       @board.code_set
+      @board.code_break
     end
   end
 

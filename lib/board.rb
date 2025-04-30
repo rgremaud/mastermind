@@ -86,28 +86,29 @@ def array_to_display
 end
 
 def peg_matches
-  i = 0
-  x = 0
   @red_pegs = 0
   @white_pegs = 0
-  loop do
-    if @code_array[i] == @input_array[i]
-       @red_pegs += 1
-    end
-    i += 1
-  break if i == @code_array.length
+  
+  @code_array.each_with_index { |color, index| @red_pegs += 1 if color == @input_array[index] }
+
+  code_counts = @code_array.reduce(Hash.new(0)) do |color, count|
+    color[count] += 1
+    color
   end
-   
-  loop do
-    if (@code_array.count(@input_array[x]) - @input_array.count(@input_array[x])) == 0
-      @white_pegs += 1
-    elsif (@code_array.count(@input_array[x]) - @input_array.count(@input_array[x])) > 0
-      @white_pegs += @code_array.count(@input_array[x]) - @input_array.count(@input_array[x])
-    end
-    x += 1
-   break if x == @code_array.length
+
+  input_counts = @input_array.reduce(Hash.new(0)) do |color, count|
+    color[count] += 1
+    color
   end
+
+  code_counts.sum do |color, count|
+    @white_pegs += [count, input_counts[color]].min
+  end
+
   @white_pegs = @white_pegs - @red_pegs
+
+  puts code_counts
+  puts input_counts
   puts "The red pegs are #{@red_pegs} and the white pegs are #{@white_pegs}"
 end
 

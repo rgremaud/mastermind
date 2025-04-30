@@ -23,14 +23,12 @@ class Computer_Board < Board
   end
 
   def code_break
-  # build your array of all permutations
     @all_colors.repeated_permutation(4) {|perm| @perms.push(perm)}
     puts "Length is #{@perms.length}"
    # run your first code guess as red red blue blue
     @input_array = ["red","red","blue","blue"]
   # calculate numbers of white and red pegs - not working
-    exact_matches 
-    relative_matches
+    peg_matches
    #i = 0
    #loop do
     @perms = @perms.select { |perm| (exact_matches_pc(perm,@code_array) + relative_matches_pc(perm,@code_array)) > (@red_pegs + @white_pegs) }
