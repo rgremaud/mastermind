@@ -26,7 +26,6 @@ def code_creation
     i += 1
     break if i == 4
   end
-  puts "Code array is #{@code_array}"
 end
 
 def display_board

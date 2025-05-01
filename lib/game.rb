@@ -22,14 +22,14 @@ class Game
     end
   end
 
-  def create_players #re-work for computer players
+  def create_players 
     print "Please enter your name: "
     name = gets.chomp.to_s
     @human_player = Player.new(name)
     puts @human_player.name
     print "Would you like to be code breaker or the code master? "
     print "Please enter breaker or master: "
-    @code_breaker = gets.chomp.to_s
+    @code_breaker = gets.chomp.to_s.downcase
   end
 
   def game_loop
@@ -41,7 +41,7 @@ class Game
       puts "Your color options are red, green, blue, yellow, orange and purple."
       puts "When inputting a guess please enter four colors seperated by a space."
       puts "Example input: red blue green orange"
-      puts "Red pegs indicate and EXACT match"
+      puts "Red pegs indicate an EXACT match"
       puts "White pegs indicate a RELATIVE match"
       code_break_loop
     elsif @code_breaker == "master"

@@ -11,8 +11,8 @@ class Computer_Board < Board
     @peg_array = [] 
     @code_array = []
     @perms = []
-    @red_pegs_perm = nil
-    @white_pegs_perm = nil
+    #@red_pegs_perm = nil
+    #@white_pegs_perm = nil
   end
 
   def code_set
@@ -23,25 +23,20 @@ class Computer_Board < Board
   end
 
   def code_break
+    i = 0
     @all_colors.repeated_permutation(4) {|perm| @perms.push(perm)}
     puts "Length is #{@perms.length}"
     @input_array = ["red","red","blue","blue"]
-    peg_matches
-    puts @perms[0]
-    puts peg_matches_pc(@input_array)
-    puts peg_matches_pc(@perms[0])
-   #i = 0
-   #loop do
-  @perms = @perms.select { |perm| peg_matches_pc(perm) > peg_matches_pc(@input_array) }
-  
-  puts "Perm length is #{@perms.length}"
-    #@input_array = @perms[0]
-    #p "New input array is #{@input_array}"
-    #puts "Loop trigger is #{@perms.length}"
-    #i += 1
-    #break if i <= 12 || @input_array == @code_array
-    #end
-   # pick the first element in the perm array and re-run as a loop
+    peg_matches 
+    loop do 
+      @perms = @perms.select { |perm| peg_matches_pc(perm) > peg_matches_pc(@input_array) }
+      puts "Perm length is #{@perms.length}"
+      @input_array = @perms[0]
+      puts "New input array is #{@input_array}"
+      display_storage
+      i += 1
+    break if i == 12 || @input_array == @code_array
+    end
   end
 
   def peg_matches_pc(perm_array)
