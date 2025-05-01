@@ -25,18 +25,18 @@ class Computer_Board < Board
   def code_break
     @all_colors.repeated_permutation(4) {|perm| @perms.push(perm)}
     puts "Length is #{@perms.length}"
-   # run your first code guess as red red blue blue
     @input_array = ["red","red","blue","blue"]
-  # calculate numbers of white and red pegs - not working
     peg_matches
+    puts @perms[0]
+    puts peg_matches_pc(@input_array)
+    puts peg_matches_pc(@perms[0])
    #i = 0
    #loop do
-  @perms = @perms.select { |perm| peg_matches_pc(perm) > (@red_pegs + @white_pegs) }
+  @perms = @perms.select { |perm| peg_matches_pc(perm) > peg_matches_pc(@input_array) }
+  
   puts "Perm length is #{@perms.length}"
     #@input_array = @perms[0]
     #p "New input array is #{@input_array}"
-    #exact_matches
-    #relative_matches
     #puts "Loop trigger is #{@perms.length}"
     #i += 1
     #break if i <= 12 || @input_array == @code_array
@@ -47,25 +47,20 @@ class Computer_Board < Board
   def peg_matches_pc(perm_array)
     red_pegs = 0
     white_pegs = 0
+    all_items = []
   
     @code_array.each_with_index { |color, index| @red_pegs += 1 if color == perm_array[index] }
 
-    code_counts = @code_array.reduce(Hash.new(0)) do |color, count|
-      color[count] += 1
-      color
-    end
-
-    perm_counts = perm_array.reduce(Hash.new(0)) do |color, count|
-      color[count] += 1
-      color
-    end
-
-    code_counts.sum do |color, count|
-      white_pegs += [count, perm_counts[color]].min
+    all_items = @input_array + @code_array
+    all_items.uniq!
+  
+    all_items.each_index do |index|
+      white_pegs += [perm_array.count(all_items[index]), @code_array.count(all_items[index])].min
     end
 
     white_pegs = white_pegs - red_pegs
     total_pegs = white_pegs + red_pegs
+    return total_pegs
   end
 
 end

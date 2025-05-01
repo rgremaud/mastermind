@@ -88,27 +88,19 @@ end
 def peg_matches
   @red_pegs = 0
   @white_pegs = 0
+  all_items = []
   
   @code_array.each_with_index { |color, index| @red_pegs += 1 if color == @input_array[index] }
 
-  code_counts = @code_array.reduce(Hash.new(0)) do |color, count|
-    color[count] += 1
-    color
-  end
-
-  input_counts = @input_array.reduce(Hash.new(0)) do |color, count|
-    color[count] += 1
-    color
-  end
-
-  code_counts.sum do |color, count|
-    @white_pegs += [count, input_counts[color]].min
+  all_items = @input_array + @code_array
+  all_items.uniq!
+  
+  all_items.each_index do |index|
+    @white_pegs += [@input_array.count(all_items[index]), @code_array.count(all_items[index])].min
   end
 
   @white_pegs = @white_pegs - @red_pegs
 
-  puts code_counts
-  puts input_counts
   puts "The red pegs are #{@red_pegs} and the white pegs are #{@white_pegs}"
 end
 
