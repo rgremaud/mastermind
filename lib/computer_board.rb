@@ -11,8 +11,6 @@ class Computer_Board < Board
     @peg_array = [] 
     @code_array = []
     @perms = []
-    #@red_pegs_perm = nil
-    #@white_pegs_perm = nil
   end
 
   def code_set
@@ -22,20 +20,21 @@ class Computer_Board < Board
     puts "You have set the code array to #{@code_array}"
   end
 
-  def code_break
+  def code_break_pc
     i = 0
     @all_colors.repeated_permutation(4) {|perm| @perms.push(perm)}
-    puts "Length is #{@perms.length}"
     @input_array = ["red","red","blue","blue"]
     peg_matches 
+    display_storage
     loop do 
-      @perms = @perms.select { |perm| peg_matches_pc(perm) > peg_matches_pc(@input_array) }
-      puts "Perm length is #{@perms.length}"
+      @perms = @perms.select { |perm| peg_matches_pc(perm) > (@white_pegs + (@red_pegs*2))}
       @input_array = @perms[0]
+      peg_matches
       puts "New input array is #{@input_array}"
-      display_storage
+      display_storage_pc
       i += 1
-    break if i == 12 || @input_array == @code_array
+    break if @input_array == @code_array || i == 12
+    display_storage_pc
     end
   end
 
@@ -44,7 +43,7 @@ class Computer_Board < Board
     white_pegs = 0
     all_items = []
   
-    @code_array.each_with_index { |color, index| @red_pegs += 1 if color == perm_array[index] }
+    @code_array.each_with_index { |color, index| red_pegs += 1 if color == perm_array[index] }
 
     all_items = @input_array + @code_array
     all_items.uniq!
@@ -54,8 +53,18 @@ class Computer_Board < Board
     end
 
     white_pegs = white_pegs - red_pegs
-    total_pegs = white_pegs + red_pegs
-    return total_pegs
+    white_pegs = white_pegs
+    red_pegs = red_pegs
+    total_peg_score = white_pegs + (red_pegs*2)
+    return total_peg_score
+  end
+
+  def display_storage_pc
+    array_to_display
+    @input_storage << @map_array
+    peg_to_display
+    @peg_storage << @peg_array
+    self.display_board
   end
 
 end

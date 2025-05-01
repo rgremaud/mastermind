@@ -19,6 +19,8 @@ class Game
       break if i == 12 || @board.win_check === true
     end
     if @board.win_check != true then @board.you_lose
+    else
+      puts "Congrats!  You cracked the code!"
     end
   end
 
@@ -47,7 +49,7 @@ class Game
     elsif @code_breaker == "master"
       @board = Computer_Board.new
       @board.code_set
-      @board.code_break
+      @board.code_break_pc
     end
   end
 

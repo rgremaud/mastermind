@@ -61,7 +61,7 @@ def display_storage
   @input_storage << @map_array
   peg_to_display
   @peg_storage << @peg_array
-  self.display_board
+  display_board
 end
 
 def array_to_display
@@ -106,7 +106,6 @@ end
 
 def win_check
   if @input_array == @code_array
-    puts "Code has been cracked!"
     return true
   else
     false
